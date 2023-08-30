@@ -1,4 +1,4 @@
-'use strict';
+
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
       updatedAt: new Date()
     }
   ]
-      await queryInterface.bulkInsert('Tariffs', arr, {});
+      await queryInterface.bulkInsert('Tafiffs', arr, {});
   },
 
   async down (queryInterface, Sequelize) {
