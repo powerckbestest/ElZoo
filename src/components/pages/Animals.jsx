@@ -1,7 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import AnimalCard from './AnimalCard';
 
-export default function Animals() {
+export default function Animals({ animals }) {
+  const [animal, setAnimal] = useState(animals);  
+  cangeHandler = (e) => setAnimal((prev) => [...prev, e]);
+  
   return (
-    <div>Animals</div>
+    <Row className="justify-content-md-center">
+      {
+        animal?.map((animal) => (
+          <AnimalCard key={animal.id} onChange={cangeHandler} />
+        ))
+      }
+    </Row>
   )
 }
