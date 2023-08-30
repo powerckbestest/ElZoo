@@ -19,6 +19,11 @@ export default function CreateAnimal() {
     const res = await axios.post('/api/create', input)
     if (res.status === 200) {
       alert('успешно!')
+      setInput({
+        name: '',
+        nick: '',
+        desc: '',
+      });
     }
   }
 

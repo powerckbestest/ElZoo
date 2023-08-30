@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tafiff.init({
     peopleId: DataTypes.INTEGER,
-    dayId: DataTypes.INTEGER
+    dayId: DataTypes.INTEGER,
+    price: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Tafiff',

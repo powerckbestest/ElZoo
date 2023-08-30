@@ -6,24 +6,28 @@ module.exports = {
     const arr = [{
       peopleId: 1,
       dayId: 1,
+      price: 100,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       peopleId: 2,
       dayId: 1,
+      price: 50,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       peopleId: 1,
       dayId: 2,
+      price: 70,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       peopleId: 2,
       dayId: 2,
+      price: 30,
       createdAt: new Date(),
       updatedAt: new Date()
     }
