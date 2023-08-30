@@ -11,18 +11,18 @@ authRouter.get('/login', (req, res) => {
 })
 
 authRouter.post('/login', async (req, res) => {
-    const {login, password} = req.body;
-    const user = await User.findOne({where: {login}})
-    if(!user) {
-        return res.status(400).json({message: 'Login not found'});
+    const { login, password } = req.body;
+    const user = await User.findOne({ where: { login } });
+    if (!user) {
+        return res.status(400).json({ message: 'Login not found' });
     }
     const isCorrect = await bcrypt.compare(password, user.hashpass);
-    if(!isCorrect) {
-        return res.status(400).json({message: 'Incorrect password'})
+    if (!isCorrect) {
+        return res.status(400).json({ message: 'Incorrect password' });
     }
-    req.session.user = {...user.get(), hashpass: undefined}
-    res.sendStatus(200)
-})
+    req.session.user = { ...user.get(), hashpass: undefined };
+    return res.sendStatus(200);
+});
 
 authRouter.get('/logout', (req, res) =>{
     req.session.destroy()

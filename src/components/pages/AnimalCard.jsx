@@ -1,9 +1,20 @@
+import axios from 'axios';
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
 export default function AnimalCard({ el }) {
+
+
+  const editHandlet = () => {
+
+  }
+
+  const deleteHandler = () => {
+    axios.delete(`/api/animals/${el.id}`)
+  }
+
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
@@ -13,7 +24,7 @@ export default function AnimalCard({ el }) {
           {el.desc}
         </Card.Text>
         <Card.Link href="#">Изменить</Card.Link>
-        <Card.Link href="#">Удалить</Card.Link>
+        <Card.Link onClick={deleteHandler}>Удалить</Card.Link>
       </Card.Body>
     </Card>
   )
