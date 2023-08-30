@@ -11,10 +11,10 @@ authRouter.get('/login', (req, res) => {
 })
 
 authRouter.post('/login', async (req, res) => {
-    const {email, password} = req.body;
-    const user = await User.findOne({where: {email}})
+    const {login, password} = req.body;
+    const user = await User.findOne({where: {login}})
     if(!user) {
-        return res.status(400).json({message: 'Email not found'});
+        return res.status(400).json({message: 'Login not found'});
     }
     const isCorrect = await bcrypt.compare(password, user.hashpass);
     if(!isCorrect) {
