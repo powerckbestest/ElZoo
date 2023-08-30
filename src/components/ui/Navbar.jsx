@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import axios from 'axios';
 
 
-export default function AppNavBar() {
+export default function AppNavBar({user}) {
   return (
     <Navbar bg="light" variant="light">
       <Container>
