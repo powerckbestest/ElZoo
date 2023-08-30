@@ -38,6 +38,7 @@ app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   res.locals.path = req.originalUrl;
+  res.locals.session = req.user
   next();
 });
 

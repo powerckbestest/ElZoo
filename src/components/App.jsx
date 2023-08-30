@@ -8,15 +8,15 @@ import Login from './pages/Login'
 import Tariffs from './pages/Tariffs'
 import Animals from './pages/Animals';
 
-export default function App({ animals }) {
+export default function App({ animals, user }) {
   return (
     <Container>
-      <NavBar />
+      <NavBar user={user} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/create" element={<CreateAnimal />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/tariffs" element={<Tariffs />} />
+        <Route path="/tariffs" element={<Tariffs user={user} />} />
         <Route path="/animals" element={<Animals animals={animals} />} />
       </Routes>
     </Container>

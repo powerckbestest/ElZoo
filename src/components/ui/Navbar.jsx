@@ -14,7 +14,7 @@ export default function AppNavBar({user}) {
         <Nav className="me-auto flex-grow-1">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/create">Create</Nav.Link>
-          <Nav.Link href="/tariff">Tariff</Nav.Link>
+          <Nav.Link href="/tariffs">Tariff</Nav.Link>
           <Nav.Link href="/animals">Animals</Nav.Link>
           <NavDropdown title="Categories" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Mammals</NavDropdown.Item>
