@@ -1,4 +1,5 @@
 import express from 'express';
+import {Animal} from '../../db/models'
 
 const router = express.Router();
 
@@ -22,8 +23,9 @@ router.get('/tariffs', (req, res) => {
   res.render('Layout', initState);
 });
 
-router.get('/animals', (req, res) => {
-  const initState = {};
+router.get('/animals', async(req, res) => {
+  const animals = await Animal.findAll()
+  const initState = {animals};
   res.render('Layout', initState);
 });
 
