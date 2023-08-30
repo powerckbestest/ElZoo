@@ -5,13 +5,13 @@ import AnimalCard from './AnimalCard';
 
 export default function Animals({ animals }) {
   const [animal, setAnimal] = useState(animals);  
-  cangeHandler = (e) => setAnimal((prev) => [...prev, e]);
+  const changeHandler = (e) => setAnimal((prev) => [...prev, e]);
   
   return (
     <Row className="justify-content-md-center">
       {
-        animal?.map((animal) => (
-          <AnimalCard key={animal.id} onChange={cangeHandler} />
+        animal?.map((el) => (
+          <AnimalCard key={el.id} changeHandler={changeHandler} />
         ))
       }
     </Row>
