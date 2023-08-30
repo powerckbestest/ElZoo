@@ -21,6 +21,7 @@ export default function Tariffs({user}) {
     <Form.Control type="text" placeholder="Normal text" />
     :
     
+    
     }
   </>
   )
