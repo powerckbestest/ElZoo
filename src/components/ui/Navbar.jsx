@@ -19,7 +19,8 @@ export default function AppNavBar({ user }) {
             <NavDropdown.Item href="#action/3.2">Birds</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Fish</NavDropdown.Item>
           </NavDropdown>
-          {user && <Nav.Link href="/create">Create</Nav.Link>} {/* Show "Create" link only for authenticated users */}
+          {user && <Nav.Link href="/create">Create</Nav.Link>}
+          {user &&  <Nav.Link href="/update-tariffs">EditTariffs</Nav.Link> } 
         </Nav>
         <Nav className="me-auto flex-grow-0">
           {user ? (

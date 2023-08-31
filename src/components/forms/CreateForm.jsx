@@ -42,6 +42,9 @@ export default function CreateAnimal() {
         <Form.Control value={input.desc} onChange={changeHandler} name='desc' as="textarea" rows={3} />
       </Form.Group>
       <Button as="input" type="submit" value="Submit" />{' '}
+
+      
     </Form>
+    
   )
 }

@@ -1,5 +1,5 @@
 import express from 'express';
-import {Animal} from '../../db/models'
+import {Animal, Tafiff} from '../../db/models'
 import authCheck from '../middlewares/authCheck';
 
 const router = express.Router();
@@ -28,6 +28,13 @@ router.get('/tariffs', (req, res) => {
   const initState = {};
   res.render('Layout', initState);
 });
+
+router.get('/update-tariffs', (req, res) => {
+  const initState = {}
+  res.render('Layout', initState)
+})
+
+
 
 router.get('/animals', async(req, res) => {
   const animals = await Animal.findAll()
