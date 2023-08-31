@@ -14,6 +14,11 @@ router.get('/create', authCheck(true), (req, res) => {
   res.render('Layout', initState);
 });
 
+router.get('/edit', (req, res) => {
+  const initState = {}
+  res.render('Layout', initState)
+})
+
 router.get('/login', authCheck(false), (req, res) => {
   const initState = {};
   res.render('Layout', initState);
