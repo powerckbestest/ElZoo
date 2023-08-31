@@ -12,19 +12,16 @@ export default function Animals({user,  animals }) {
     setAnimalList(updateAnimalList)
   }
 
-
   const deleteHandler = async (id) => {
       await axios.delete(`/api/animals/${id}`);
       const updatedAnimalList = animalList.filter(animal => animal.id !== id);
       setAnimalList(updatedAnimalList);
-   
   }
-
   return (
     <Row className="justify-content-md-center">
       {
         animalList?.map((el) => (
-          <AnimalCard user={user} key={el.id} el={el} onDelete={user? deleteHandler: null} onEdit={user?editHandler:null} />
+          <AnimalCard setAnimalList={setAnimalList} user={user} key={el.id} el={el} onDelete={user? deleteHandler: null} onEdit={user?editHandler:null} />
         ))
       }
     </Row>
