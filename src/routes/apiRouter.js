@@ -56,7 +56,6 @@ router.delete('/animals/:id', async (req, res) => {
 })
 
 router.post('/animals/:id', async(req, res) => {
-  console.log('get it')
   const animal = await Animal.findByPk(req.params.id)
   const animalPics = await Picture.findAll({where: {animalId: req.params.id}})
   res.status(200).json({animal, animalPics})

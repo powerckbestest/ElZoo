@@ -9,7 +9,7 @@ export default function CarouselImg() {
   const [animal, setAnimal] = useState(null)
   const [pics, setPics] = useState([])
   const { id } = useParams();
-  console.log(useParams());
+
   useEffect(() => {
     axios.post(`/api/animals/${id}`).then((data) => {
       setAnimal(data.data.animal)
@@ -17,8 +17,6 @@ export default function CarouselImg() {
     })
   }, [])
 
-  console.log(pics);
-  console.log(animal);
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
