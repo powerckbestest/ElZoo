@@ -22,5 +22,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
+    'no-await-in-loop': 'off',
+    'no-restricted-syntax': 'off'
   },
 };

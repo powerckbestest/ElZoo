@@ -1,5 +1,6 @@
 import express from 'express';
-import {Animal, Tafiff} from '../../db/models'
+import {Animal, Picture, Tafiff} from '../../db/models'
+
 import authCheck from '../middlewares/authCheck';
 
 const router = express.Router();
@@ -40,6 +41,10 @@ router.get('/animals', async(req, res) => {
   const animals = await Animal.findAll()
   const initState = {animals};
   res.render('Layout', initState);
+});
+
+router.get('/animals/:id', async(req, res) => {
+  res.render('Layout', {});
 });
 
 export default router;
