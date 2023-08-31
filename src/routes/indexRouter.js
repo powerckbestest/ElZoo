@@ -1,5 +1,6 @@
 import express from 'express';
 import {Animal} from '../../db/models'
+import authCheck from '../middlewares/authCheck';
 
 const router = express.Router();
 
@@ -8,12 +9,17 @@ router.get('/', (req, res) => {
   res.render('Layout', initState);
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', authCheck(true), (req, res) => {
   const initState = {};
   res.render('Layout', initState);
 });
 
-router.get('/login', (req, res) => {
+router.get('/edit', (req, res) => {
+  const initState = {}
+  res.render('Layout', initState)
+})
+
+router.get('/login', authCheck(false), (req, res) => {
   const initState = {};
   res.render('Layout', initState);
 });
