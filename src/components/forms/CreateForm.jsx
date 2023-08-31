@@ -39,6 +39,9 @@ export default function CreateAnimal() {
         <Form.Control type="file" multiple name="files" placeholder="img" />
       </Form.Group>
       <Button as="input" type="submit" value="Submit" />{' '}
+
+      
     </Form>
+    
   )
 }

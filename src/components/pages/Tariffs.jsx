@@ -1,92 +1,38 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-
-
+import React, {useState, useEffect} from 'react'
+import { Table } from 'react-bootstrap'
+import axios from 'axios'
 
 export default function Tariffs() {
+    const [tariffs, setTariffs] = useState([])
+
+    useEffect(() => {
+        async function getTariffs () {
+            const response = await axios.get('/api/tariffs')
+            setTariffs(response.data)
+        }
+        getTariffs()
+    }, [])
   return (
-    <div>Tariffs</div>
-  )
+    <div>
+      <h2>Tariffs</h2>
+      <Table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Day</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tariffs.map((tarif) => (
+            <tr key={tarif.id}>
+              <td>{tarif.peopleId}</td>
+              <td>{tarif.dayId}</td>
+              <td>{tarif.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
 }
-
-// export default function Tariffs({ user }) {
-//   const [prices, setPrices] = useState({
-//     weekend: {
-//       normal: '',
-//       child: '',
-//     },
-//     weekday: {
-//       normal: '',
-//       child: '',
-//     },
-//   });
-
-//   const handleInputChange = (event, day, type) => {
-//     const { value } = event.target;
-//     setPrices((prevPrices) => ({
-//       ...prevPrices,
-//       [day]: {
-//         ...prevPrices[day],
-//         [type]: value,
-//       },
-//     }));
-//   };
-
-//   const handleSave = () => {
-//     // Ваш код для отправки данных на сервер
-//     // Здесь может быть запрос к API, который сохранит данные в базе данных
-//     console.log('Saving prices:', prices);
-//   };
-
-//   return (
-//     <div>
-//       <div>
-//         <h2>Weekend price:</h2>
-//         <div>Old</div>
-//         <Form.Control
-//           type="text"
-//           placeholder="Normal text"
-//           value={prices.weekend.normal}
-//           onChange={(event) => handleInputChange(event, 'weekend', 'normal')}
-//           readOnly={!user}
-//         />
-//         <br />
-//         <div>Child</div>
-//         <Form.Control
-//           type="text"
-//           placeholder="Normal text"
-//           value={prices.weekend.child}
-//           onChange={(event) => handleInputChange(event, 'weekend', 'child')}
-//           readOnly={!user}
-//         />
-//       </div>
-//       <div>
-//         <h2>WeekDay price:</h2>
-//         <div>Old</div>
-//         <Form.Control
-//           type="text"
-//           placeholder="Normal text"
-//           value={prices.weekday.normal}
-//           onChange={(event) => handleInputChange(event, 'weekday', 'normal')}
-//           readOnly={!user}
-//         />
-//         <br />
-//         <div>Child</div>
-//         <Form.Control
-//           type="text"
-//           placeholder="Normal text"
-//           value={prices.weekday.child}
-//           onChange={(event) => handleInputChange(event, 'weekday', 'child')}
-//           readOnly={!user}
-//         />
-//       </div>
-//       {user && (
-//         <Button onClick={handleSave} disabled={!user}>
-//           Save
-//         </Button>
-//       )}
-//     </div>
-//   );
-// }

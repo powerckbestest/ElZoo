@@ -1,8 +1,9 @@
 import express from 'express';
 import sharp from 'sharp';
 import fs from 'fs/promises';
-import {Animal, Picture} from '../../db/models'
+import {Animal, Picture, Tafiff} from '../../db/models'
 import upload from '../middlewares/multerMid';
+
 
 const router = express.Router();
 
@@ -60,4 +61,39 @@ router.post('/animals/:id', async(req, res) => {
   const animalPics = await Picture.findAll({where: {animalId: req.params.id}})
   res.status(200).json({animal, animalPics})
 })
+
+
+
+router.get('/tariffs', async (req, res) => {
+  try {
+    const allTariffs = await Tafiff.findAll({
+      order: [['createdAt', 'ASC']], 
+        });
+        
+    
+    return res.json(allTariffs);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+router.post('/update-tariffs', async (req, res) => {
+  try {
+    const updatedTariffs = req.body;
+    for (const updatedTarif of updatedTariffs) {
+      const { peopleId, dayId, price } = updatedTarif;
+      const tarif = await Tafiff.findOne({ where: { peopleId, dayId } });
+      if (tarif) {
+        tarif.price = price;
+        await tarif.save();
+      }
+    }
+    return res.json({ message: 'Успех' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Произошла ошибка на сервере' });
+  }
+})
+
+
 export default router;
