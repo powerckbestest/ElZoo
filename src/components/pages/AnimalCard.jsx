@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 export default function AnimalCard({ el, onDelete, onEdit, user }) {
 
@@ -26,7 +27,8 @@ export default function AnimalCard({ el, onDelete, onEdit, user }) {
             <Card.Link onClick={editHandler}>Изменить</Card.Link>
             <Card.Link onClick={deleteHandler}>Удалить</Card.Link>
           </>
-        ): false}
+        ) : false}
+        <Button onClick={() => window.location.href = `/animals/${el.id}`} variant="success">Подробнее...</Button>{' '}
       </Card.Body>
     </Card>
   );
