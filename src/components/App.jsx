@@ -21,10 +21,31 @@ export default function App({ animals, user, animal, animalPics }) {
           <Route path="/login" element={<Login />} />
           <Route path="/tariffs" element={<Tariffs user={user} />} />
           <Route path="/update-tariffs" element={<TarrifsEdit user={user} />} />
-        <Route path="/animals" element={<Animals user={user} animals={animals} />} />
-          <Route path="/animals/:id" element={<SingleAnimal animal={animal} animalPics={animalPics}/>} />
-      </Routes>
+          <Route path="/animals" element={<Animals user={user} animals={animals} />} />
+          <Route path="/animals/:id" element={<SingleAnimal animal={animal} animalPics={animalPics} />} />
+        </Routes>
       </Container>
+      <footer>
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>Контакты</h4>
+            <p>Телефон: +7 123 456 789</p>
+            <p>Email: elzoo@elb.com</p>
+            <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+          </div>
+          <div className="footer-section">
+            <h4>Ссылки</h4>
+            <ul>
+              <li><a href="/">Главная</a></li>
+              <li><a href="/о-нас">О нас</a></li>
+              <li><a href="/контакты">Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2022 Зоопарк. Все права защищены.</p>
+        </div>
+      </footer>
     </>
   )
 }
