@@ -7,8 +7,9 @@ import axios from 'axios';
 
 export default function AppNavBar({ user }) {
   return (
-    <Navbar className='navBar'>
-      <Container className='container'>
+    <Navbar className='navBar' style={{ width: '100%', margin: 0 }}>
+
+      <Container>
         <Navbar.Brand href="/">LOGO</Navbar.Brand>
         <Nav className="me-auto flex-grow-1" >
           <Nav.Link className='navigation' href="/">Home</Nav.Link>

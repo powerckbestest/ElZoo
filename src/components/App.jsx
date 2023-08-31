@@ -10,15 +10,17 @@ import Animals from './pages/Animals';
 
 export default function App({ animals, user }) {
   return (
-    <Container>
-      <NavBar user={user} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreateAnimal />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/tariffs" element={<Tariffs user={user} />} />
-        <Route path="/animals" element={<Animals user={user} animals={animals} />} />
-      </Routes>
-    </Container>
+
+    <>   <NavBar user={user} />
+      <Container>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create" element={<CreateAnimal />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/tariffs" element={<Tariffs user={user} />} />
+          <Route path="/animals" element={<Animals user={user} animals={animals} />} />
+        </Routes>
+      </Container>
+    </>
   )
 }
