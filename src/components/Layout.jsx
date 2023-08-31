@@ -23,6 +23,10 @@ export default function Layout({ initState }) {
         />
         <script defer src="/app.js" />
         <script defer src="/vendor.js" />
+        <link
+        rel="stylesheet"
+          href='/stylesheet/NavBarCss.css'
+        /> 
         <title>Document</title>
       </head>
       <body>
