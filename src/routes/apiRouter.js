@@ -62,8 +62,6 @@ router.post('/animals/:id', async(req, res) => {
   res.status(200).json({animal, animalPics})
 })
 
-
-
 router.get('/tariffs', async (req, res) => {
   try {
     const allTariffs = await Tafiff.findAll({
@@ -95,5 +93,20 @@ router.post('/update-tariffs', async (req, res) => {
   }
 })
 
+router.patch('/updateanimal/:id', async(req, res) => {
+  try {
+    console.log(req.body);
+    await Animal.update({
+      name: req.body.newname,
+      nick: req.body.newnick,
+      desc: req.body.newdesc
+    }, 
+       {where: {id: req.params.id}})
+       const updated = await Animal.findByPk(req.params.id)
+       return res.status(200).json(updated)
+   }catch (err){
+     return res.sendStatus(400)
+   }
+})
 
 export default router;

@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import ModalPage from './ModalPage';
 
-export default function AnimalCard({ el, onDelete, onEdit, user }) {
+export default function AnimalCard({ el, onDelete, onEdit, user, setAnimalList }) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const deleteHandler = () => {
     onDelete(el.id);
   }
 
-  const editHandler = () => {
-    const updateData = { name: 'New name', nick: 'new nick', desc: 'new desk' };
-    onEdit(el.id, updateData);
-    console.log(updateData)
-  }
+  // const editHandler = () => {
+  //   const updateData = { name: 'New name', nick: 'new nick', desc: 'new desk' };
+  //   onEdit(el.id, updateData);
+  //   console.log(updateData)
+  // }
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -24,12 +28,16 @@ export default function AnimalCard({ el, onDelete, onEdit, user }) {
         </Card.Text>
         {user ? (
           <>
-            <Card.Link onClick={editHandler}>Изменить</Card.Link>
+            <Card.Link onClick={handleShow}>Изменить</Card.Link>
             <Card.Link onClick={deleteHandler}>Удалить</Card.Link>
           </>
         ) : false}
         <Button onClick={() => window.location.href = `/animals/${el.id}`} variant="success">Подробнее...</Button>{' '}
       </Card.Body>
+      {show ?
+        <ModalPage setAnimalList={setAnimalList} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} el={el} /> :
+        <></>
+      }
     </Card>
   );
 }

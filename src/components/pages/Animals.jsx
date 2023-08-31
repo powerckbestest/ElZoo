@@ -24,7 +24,7 @@ export default function Animals({user,  animals }) {
     <Row className="justify-content-md-center">
       {
         animalList?.map((el) => (
-          <AnimalCard user={user} key={el.id} el={el} onDelete={user? deleteHandler: null} onEdit={user?editHandler:null} />
+          <AnimalCard setAnimalList={setAnimalList} user={user} key={el.id} el={el} onDelete={user? deleteHandler: null} onEdit={user?editHandler:null} />
         ))
       }
     </Row>
