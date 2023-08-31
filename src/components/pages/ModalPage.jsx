@@ -28,7 +28,7 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
         form.append("newdesc", input.newdesc)
         for (const file of e.target.files.files) {
             form.append('files', file)
-          }
+        }
         const response = await axios.patch(`/api/updateanimal/${el.id}`, form)
         setAnimalList((prev) => prev.map((element) => element.id !== response.data.id ? el : response.data))
         handleClose()
@@ -43,17 +43,17 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
             </Modal.Header>
             <Form onSubmit={sendChanges}>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newname} name='newname' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newname} name='newname' size="lg" type="text" placeholder="Введите новое имя" />
                 </Modal.Body>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newnick} name='newnick' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newnick} name='newnick' size="lg" type="text" placeholder="Введите новую кличку" />
                 </Modal.Body>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newdesc} name='newdesc' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newdesc} name='newdesc' size="lg" type="text" placeholder="Введите новое описание" />
                 </Modal.Body>
                 <Modal.Body>
                     <Form.Group className="mb-3" controlId="formFileMultiple">
-                        <Form.Label>Picture</Form.Label>
+                        <Form.Label>Добавить/Удалить фото (до 5 фото)</Form.Label>
                         <Form.Control type="file" multiple name="files" placeholder="img" />
                     </Form.Group>
                 </Modal.Body>
@@ -74,10 +74,10 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Закрыть
                     </Button>
                     <Button type='submit' variant="primary">
-                        Save Changes
+                        Сохранить изменения
                     </Button>
                 </Modal.Footer>
             </Form>

@@ -35,13 +35,10 @@ export default function CreateAnimal() {
         <Form.Control name='desc' as="textarea" rows={3} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formFileMultiple">
-        <Form.Label>Picture</Form.Label>
+        <Form.Label>Фото: (макс. 5 шт.)</Form.Label>
         <Form.Control type="file" multiple name="files" placeholder="img" />
       </Form.Group>
       <Button as="input" type="submit" value="Submit" />{' '}
-
-      
     </Form>
-    
   )
 }
