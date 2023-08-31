@@ -1,5 +1,5 @@
 import express from 'express';
-import {Animal} from '../../db/models'
+import {Animal,Tariffs} from '../../db/models'
 
 const router = express.Router();
 
@@ -24,6 +24,7 @@ router.post('/create', async(req, res) => {
    return res.sendStatus(400)
   }
 })
+
 
 router.get('/animals', async (req, res) => {
   try {

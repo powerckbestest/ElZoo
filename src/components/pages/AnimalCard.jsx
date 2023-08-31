@@ -1,18 +1,16 @@
-import axios from 'axios';
-import React from 'react'
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-
-export default function AnimalCard({ el }) {
-
-
-  const editHandlet = () => {
-
-  }
+export default function AnimalCard({ el, onDelete, onEdit, user }) {
 
   const deleteHandler = () => {
-    axios.delete(`/api/animals/${el.id}`)
+    onDelete(el.id);
+  }
+
+  const editHandler = () => {
+    const updateData = { name: 'New name', nick: 'new nick', desc: 'new desk' };
+    onEdit(el.id, updateData);
+    console.log(updateData)
   }
 
   return (
@@ -23,9 +21,13 @@ export default function AnimalCard({ el }) {
         <Card.Text>
           {el.desc}
         </Card.Text>
-        <Card.Link href="#">Изменить</Card.Link>
-        <Card.Link onClick={deleteHandler}>Удалить</Card.Link>
+        {user ? (
+          <>
+            <Card.Link onClick={editHandler}>Изменить</Card.Link>
+            <Card.Link onClick={deleteHandler}>Удалить</Card.Link>
+          </>
+        ): false}
       </Card.Body>
     </Card>
-  )
+  );
 }

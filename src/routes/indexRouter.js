@@ -13,6 +13,11 @@ router.get('/create', (req, res) => {
   res.render('Layout', initState);
 });
 
+router.get('/edit', (req, res) => {
+  const initState = {}
+  res.render('Layout', initState)
+})
+
 router.get('/login', (req, res) => {
   const initState = {};
   res.render('Layout', initState);

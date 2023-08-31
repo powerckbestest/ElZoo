@@ -17,7 +17,7 @@ export default function App({ animals, user }) {
         <Route path="/create" element={<CreateAnimal />} />
         <Route path="/login" element={<Login />} />
         <Route path="/tariffs" element={<Tariffs user={user} />} />
-        <Route path="/animals" element={<Animals animals={animals} />} />
+        <Route path="/animals" element={<Animals user={user} animals={animals} />} />
       </Routes>
     </Container>
   )
