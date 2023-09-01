@@ -10,6 +10,16 @@ export default function CarouselImg() {
   const [pics, setPics] = useState([])
   const { id } = useParams();
 
+  const imgStyle = {
+    maxWidth: '100%',
+    maxHeight: '400px',
+    width: 'auto',
+    height: 'auto',
+    margin: '0 auto', 
+    marginTop: '40px',
+    display: 'block'
+  };
+
   useEffect(() => {
     axios.post(`/api/animals/${id}`).then((data) => {
       setAnimal(data.data.animal)
@@ -24,7 +34,7 @@ export default function CarouselImg() {
     <Carousel activeIndex={index} onSelect={handleSelect}>
       {pics?.map((el) => (
         <Carousel.Item key={el.id}>
-          <img style={{ maxWidth: '100%', maxHeight: '400px', width: 'auto', height: 'auto' }} src={`/img/${el.img}`} alt="img" />
+          <img style={imgStyle} src={`/img/${el.img}`} alt="img" />
           <Carousel.Caption>
             <h3>{animal?.name}</h3>
             <p>{animal?.desc}</p>
