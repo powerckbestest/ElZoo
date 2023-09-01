@@ -13,14 +13,13 @@ router.get('/', async (req, res) => {
   res.render('Layout', initstate)
 })
 
-router.post('/create',upload.array('files', 3), async(req, res) => {
+router.post('/create',upload.array('files', 5), async(req, res) => {
   try{
   const newAnimal = await Animal.create({
     name: req.body.name,
     nick: req.body.nick,
     desc: req.body.desc
    })
-   console.log(req.files);
    for (const file of req.files) {
     const name = `${Date.now()}.webp`;
     const outputBuffer = await sharp(file.buffer).webp().toBuffer();
@@ -100,9 +99,8 @@ router.post('/update-tariffs', async (req, res) => {
   }
 })
 
-router.patch('/updateanimal/:id', async(req, res) => {
+router.patch('/updateanimal/:id', upload.array('files', 5), async(req, res) => {
   try {
-    console.log(req.body);
     await Animal.update({
       name: req.body.newname,
       nick: req.body.newnick,
@@ -110,6 +108,15 @@ router.patch('/updateanimal/:id', async(req, res) => {
     }, 
        {where: {id: req.params.id}})
        const updated = await Animal.findByPk(req.params.id)
+        for(const file of req.files){
+          const name = `${Date.now()}.webp`;
+          const outputBuffer = await sharp(file.buffer).webp().toBuffer();
+          await fs.writeFile(`./public/img/${name}`, outputBuffer);
+          await Picture.create({
+          img: name,
+          animalId: updated.id,
+    });
+        }
        return res.status(200).json(updated)
    }catch (err){
      return res.sendStatus(400)
