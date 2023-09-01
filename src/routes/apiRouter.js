@@ -4,6 +4,8 @@ import fs from 'fs/promises';
 import {Animal, Picture, Tafiff} from '../../db/models'
 import upload from '../middlewares/multerMid';
 
+const { Op } = require('sequelize');
+
 
 const router = express.Router();
 
@@ -125,6 +127,19 @@ router.patch('/updateanimal/:id', upload.array('files', 5), async(req, res) => {
    }catch (err){
      return res.sendStatus(400)
    }
+})
+
+router.get('/animals/search', async (req, res) => {
+  try {
+    const {text} = req.query;
+    const animals = await Animal.findAll({
+      where : {name: {[Op.like]: `%${text}%`}},
+    })
+    res.json(animals)
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({message: 'Server error'})
+  }
 })
 
 export default router;
