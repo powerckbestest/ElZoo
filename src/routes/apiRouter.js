@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
 
 router.post('/create',upload.array('files', 5), async(req, res) => {
   try{
+    if (!req.file) {
+      return res.status(400).json({ message: 'File not found' });
+    }
   const newAnimal = await Animal.create({
     name: req.body.name,
     nick: req.body.nick,
@@ -26,7 +29,6 @@ router.post('/create',upload.array('files', 5), async(req, res) => {
     const name = `${Date.now()}.webp`;
     const outputBuffer = await sharp(file.buffer).webp().toBuffer();
     await fs.writeFile(`./public/img/${name}`, outputBuffer);
-    
     await Picture.create({
       img: name,
       animalId: newAnimal.id,
@@ -49,12 +51,16 @@ router.get('/animals', async (req, res) => {
 });
 
 router.delete('/animals/:id', async (req, res) => {
-  const photos = await Picture.findAll({where: {animalId: req.params.id}})
-  for(const img of photos){
-   await fs.unlink(`./public/img/${img.img}`)
+  try{
+    const photos = await Picture.findAll({where: {animalId: req.params.id}})
+    for(const img of photos){
+     await fs.unlink(`./public/img/${img.img}`)
+    }
+    await Animal.destroy({where: {id: req.params.id}})
+    res.sendStatus(200)
+  }catch(err){
+    console.log(err);
   }
-  await Animal.destroy({where: {id: req.params.id}})
-  res.sendStatus(200)
 })
 
 router.delete('/deletePic/:id', async (req, res) => {
@@ -75,8 +81,6 @@ router.get('/tariffs', async (req, res) => {
     const allTariffs = await Tafiff.findAll({
       order: [['id', 'ASC']], 
         });
-        
-    
     return res.json(allTariffs);
   } catch (error) {
     console.error(error);
