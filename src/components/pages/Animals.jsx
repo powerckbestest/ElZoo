@@ -12,14 +12,11 @@ export default function Animals({user,  animals }) {
     setAnimalList(updateAnimalList)
   }
 
-
   const deleteHandler = async (id) => {
       await axios.delete(`/api/animals/${id}`);
       const updatedAnimalList = animalList.filter(animal => animal.id !== id);
       setAnimalList(updatedAnimalList);
-   
   }
-
   return (
     <Row className="justify-content-md-center">
       {

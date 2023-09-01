@@ -56,6 +56,13 @@ router.delete('/animals/:id', async (req, res) => {
   res.sendStatus(200)
 })
 
+router.delete('/deletePic/:id', async (req, res) => {
+  const pic = await Picture.findByPk(req.params.id)
+  await Picture.destroy({where: {id: req.params.id}})
+  await fs.unlink(`./public/img/${pic.img}`)
+  res.sendStatus(200)
+})
+
 router.post('/animals/:id', async(req, res) => {
   const animal = await Animal.findByPk(req.params.id)
   const animalPics = await Picture.findAll({where: {animalId: req.params.id}})

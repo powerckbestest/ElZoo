@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ModalPage from './ModalPage';
 
-export default function AnimalCard({ el, onDelete, onEdit, user, setAnimalList }) {
+export default function AnimalCard({ el, onDelete, user, setAnimalList }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -11,12 +11,6 @@ export default function AnimalCard({ el, onDelete, onEdit, user, setAnimalList }
   const deleteHandler = () => {
     onDelete(el.id);
   }
-
-  // const editHandler = () => {
-  //   const updateData = { name: 'New name', nick: 'new nick', desc: 'new desk' };
-  //   onEdit(el.id, updateData);
-  //   console.log(updateData)
-  // }
 
   return (
     <Card style={{ width: '18rem' }}>
