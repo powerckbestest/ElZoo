@@ -72,7 +72,7 @@ router.post('/animals/:id', async(req, res) => {
 router.get('/tariffs', async (req, res) => {
   try {
     const allTariffs = await Tafiff.findAll({
-      order: [['createdAt', 'ASC']], 
+      order: [['id', 'ASC']], 
         });
         
     

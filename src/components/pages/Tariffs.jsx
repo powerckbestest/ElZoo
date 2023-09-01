@@ -12,23 +12,27 @@ export default function Tariffs() {
         }
         getTariffs()
     }, [])
+
+    const mapPeopleIdToCategory = (peopleId) => peopleId === 1 ? 'Взрослые' : 'Дети';
+  
+    const mapDayIdToDay = (dayId) => dayId === 1 ? 'Выходные' : 'Будни';
   return (
     <div>
-      <h2>Tariffs</h2>
+      <h2>Tарифы</h2>
       <Table>
         <thead>
           <tr>
-            <th>Category</th>
-            <th>Day</th>
-            <th>Price</th>
+            <th>Категории животных</th>
+            <th>День недели</th>
+            <th>Цена билета</th>
           </tr>
         </thead>
         <tbody>
           {tariffs.map((tarif) => (
             <tr key={tarif.id}>
-              <td>{tarif.peopleId}</td>
-              <td>{tarif.dayId}</td>
-              <td>{tarif.price}</td>
+              <td>{mapPeopleIdToCategory(tarif.peopleId)}</td>
+              <td>{mapDayIdToDay(tarif.dayId)}</td>
+              <td>{`${tarif.price}₽`}</td>
             </tr>
           ))}
         </tbody>
