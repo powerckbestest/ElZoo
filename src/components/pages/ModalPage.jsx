@@ -11,7 +11,7 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
     const [input, setInput] = useState({
         newname: el.name,
         newnick: el.nick,
-        newdesc: el.desc
+        newdesc: el.desc,
     })
 
     useEffect(() => {
@@ -20,17 +20,16 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
         })
     }, [])
 
-    const doneHandler = () => {
-        // setDone((prev) => !prev)
-        // axios.patch(`/api/update/${post.id}`)
-    }
-    const deleteHandler = (e) => {
-        // axios.delete(`/api/delete/${post.id}`)
-        // setUpdateThing((prev) => prev.filter((el) => el.id !== post.id))
-    }
     const sendChanges = async (e) => {
         e.preventDefault()
-        const response = await axios.patch(`/api/updateanimal/${el.id}`, input)
+        const form = new FormData()
+        form.append("newname", input.newname)
+        form.append("newnick", input.newnick)
+        form.append("newdesc", input.newdesc)
+        for (const file of e.target.files.files) {
+            form.append('files', file)
+          }
+        const response = await axios.patch(`/api/updateanimal/${el.id}`, form)
         setAnimalList((prev) => prev.map((element) => element.id !== response.data.id ? el : response.data))
         handleClose()
     }
@@ -44,17 +43,17 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
             </Modal.Header>
             <Form onSubmit={sendChanges}>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newname} name='newname' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newname} name='newname' size="lg" type="text" placeholder="Введите новое имя" />
                 </Modal.Body>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newnick} name='newnick' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newnick} name='newnick' size="lg" type="text" placeholder="Введите новую кличку" />
                 </Modal.Body>
                 <Modal.Body>
-                    <Form.Control onChange={changeHandler} value={input.newdesc} name='newdesc' size="lg" type="text" placeholder="Type there" />
+                    <Form.Control onChange={changeHandler} value={input.newdesc} name='newdesc' size="lg" type="text" placeholder="Введите новое описание" />
                 </Modal.Body>
                 <Modal.Body>
                     <Form.Group className="mb-3" controlId="formFileMultiple">
-                        <Form.Label>Picture</Form.Label>
+                        <Form.Label>Добавить/Удалить фото</Form.Label>
                         <Form.Control type="file" multiple name="files" placeholder="img" />
                     </Form.Group>
                 </Modal.Body>
@@ -65,7 +64,7 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
                             <Card.Body>
                                 <Button onClick={(e) => {
                                     e.preventDefault();
-                                    deleteHandler();
+                                    // deleteHandler();
                                     axios.delete(`/api/deletePic/${elem.id}`)
                                     setPics((prev) => prev.filter((im) => im.id !== elem.id))
                                 }} variant="danger">Удалить</Button>
@@ -75,10 +74,10 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Закрыть
                     </Button>
                     <Button type='submit' variant="primary">
-                        Save Changes
+                        Сохранить изменения
                     </Button>
                 </Modal.Footer>
             </Form>

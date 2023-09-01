@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 
 export default function HomePage() {
   return (
-    <Container className='homepage'>
+    <div className='homepage' >
       <div className='description'>
         <img className='homePhoto' src="/images/flamimgos.jpeg" alt="" />
         <p>
@@ -11,6 +11,6 @@ export default function HomePage() {
           Наши квалифицированные сотрудники и заботливые волонтеры всегда готовы ответить на ваши вопросы и помочь вам сделать ваше посещение незабываемым. Мы стремимся предоставить вам самый комфортный и безопасный опыт, поэтому мы уделяем особое внимание здоровью и благополучию наших животных.
         </p>
       </div>
-    </Container>
+    </div>
   )
 }
