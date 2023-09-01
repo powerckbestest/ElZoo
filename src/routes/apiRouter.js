@@ -17,9 +17,6 @@ router.get('/', async (req, res) => {
 
 router.post('/create',upload.array('files', 5), async(req, res) => {
   try{
-    if (!req.file) {
-      return res.status(400).json({ message: 'File not found' });
-    }
   const newAnimal = await Animal.create({
     name: req.body.name,
     nick: req.body.nick,

@@ -28,7 +28,7 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
         form.append("newdesc", input.newdesc)
         for (const file of e.target.files.files) {
             form.append('files', file)
-          }
+        }
         const response = await axios.patch(`/api/updateanimal/${el.id}`, form)
         setAnimalList((prev) => prev.map((element) => element.id !== response.data.id ? el : response.data))
         handleClose()
@@ -53,7 +53,7 @@ export default function ModalPage({ show, handleClose, el, setAnimalList }) {
                 </Modal.Body>
                 <Modal.Body>
                     <Form.Group className="mb-3" controlId="formFileMultiple">
-                        <Form.Label>Добавить/Удалить фото</Form.Label>
+                        <Form.Label>Добавить/Удалить фото (до 5 фото)</Form.Label>
                         <Form.Control type="file" multiple name="files" placeholder="img" />
                     </Form.Group>
                 </Modal.Body>
