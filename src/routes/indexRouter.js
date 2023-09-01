@@ -15,11 +15,6 @@ router.get('/create', authCheck(true), (req, res) => {
   res.render('Layout', initState);
 });
 
-router.get('/edit', (req, res) => {
-  const initState = {}
-  res.render('Layout', initState)
-})
-
 router.get('/login', authCheck(false), (req, res) => {
   const initState = {};
   res.render('Layout', initState);
@@ -30,7 +25,7 @@ router.get('/tariffs', (req, res) => {
   res.render('Layout', initState);
 });
 
-router.get('/update-tariffs', (req, res) => {
+router.get('/update-tariffs', authCheck(true), (req, res) => {
   const initState = {}
   res.render('Layout', initState)
 })
