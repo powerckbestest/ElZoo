@@ -12,17 +12,19 @@ import TarrifsEdit from './pages/TariffsEdit'
 
 export default function App({ animals, user, animal, animalPics }) {
   return (
-    <Container>
-      <NavBar user={user} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreateAnimal />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/tariffs" element={<Tariffs user={user} />} />
-        <Route path="/update-tariffs" element={<TarrifsEdit user={user} />} />
+
+    <>   <NavBar user={user} />
+      <Container>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create" element={<CreateAnimal />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/tariffs" element={<Tariffs user={user} />} />
+          <Route path="/update-tariffs" element={<TarrifsEdit user={user} />} />
         <Route path="/animals" element={<Animals user={user} animals={animals} />} />
-        <Route path="/animals/:id" element={<SingleAnimal animal={animal} animalPics={animalPics}/>} />
+          <Route path="/animals/:id" element={<SingleAnimal animal={animal} animalPics={animalPics}/>} />
       </Routes>
-    </Container>
+      </Container>
+    </>
   )
 }
